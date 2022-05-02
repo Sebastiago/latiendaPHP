@@ -10,36 +10,42 @@
     <title>Document</title>
 </head>
 <body>
-    <h1> Paises de la region</h1>
-    <table class="table table-stripe">
+    <center>
+    <h1 class="text-warning mg-"> Paises de la region</h1>
+    <table class="table table-dark">
         <thead>
-            <tr>
-                <th>Paises</th>
-                <th>Capital</th>
-                <th>Moneda</th>
-                <th>Poblacion</th>
+            <tr class="text-success">
+                <th scope="col">Paises</th>
+                <th scope="col">Capital</th>
+                <th scope="col">Moneda</th>
+                <th scope="col">Poblacion</th>
+                <th scope="col">Ciudades</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach($paises as $pais => $infopaises)
-                <tr>
-                    <td>
+        <tbody class="text-danger">
+            @foreach($paises as $pais => $infopais)
+                <tr >
+                    <td rowspan="{{count($infopais['ciudades'])}}">
                         {{ $pais }}
                     </td>
-                    <td>
-                        {{ $infopaises["capital"] }}
+                    <td rowspan="{{count($infopais['ciudades'])}}">
+                        {{ $infopais["capital"] }}
                     </td>
-                    <td>
-                        {{ $infopaises["moneda"] }}
+                    <td rowspan="{{count($infopais['ciudades'])}}">
+                        {{ $infopais["moneda"] }}
                     </td>
-                    <td>
-                        {{ $infopaises["poblacion"] }}
+                    <td rowspan="{{count($infopais['ciudades'])}}">
+                        {{ $infopais["poblacion"] }}
                     </td>
+                   @foreach($infopais["ciudades"] as $ciudad)
                     
-                </tr> 
+                        <td>{{ $ciudad }}</td>
+                    </tr>
+                   @endforeach
             @endforeach
         </tbody>
         <tfoot></tfoot>
     </table>
+    </center>
 </body>
 </html>
